@@ -16,16 +16,24 @@ public class HospitalActor {
 
     public static void main(String[] args) {
         try {
-            Context ctx = new InitialContext();
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter your logged-in Hospital ID (Username): ");
+            String username = scanner.nextLine().trim();
+            Long hospitalId = Long.parseLong(username);
+            
+            System.out.print("Enter your password: ");
+            String password = scanner.nextLine().trim();
+
+            java.util.Properties props = new java.util.Properties();
+            props.put(Context.SECURITY_PRINCIPAL, username);
+            props.put(Context.SECURITY_CREDENTIALS, password);
+            Context ctx = new InitialContext(props);
+            
             String invJndi = "ejb:globaltrade-ear/globaltrade-ejb/InventoryManagerBean!" + InventoryManagerRemote.class.getName();
             String ordJndi = "ejb:globaltrade-ear/globaltrade-ejb/OrderManagerBean!" + OrderManagerRemote.class.getName();
 
             InventoryManagerRemote invManager = (InventoryManagerRemote) ctx.lookup(invJndi);
             OrderManagerRemote orderManager = (OrderManagerRemote) ctx.lookup(ordJndi);
-
-            Scanner scanner = new Scanner(System.in);
-            System.out.print("Enter your logged-in Hospital ID: ");
-            Long hospitalId = Long.parseLong(scanner.nextLine().trim());
 
             System.out.println("Welcome to the Hospital Portal. Commands: list, order <product> <qty>, history, exit");
 
@@ -79,6 +87,7 @@ public class HospitalActor {
                     }
                 } catch (Exception e) {
                     System.out.println("Error processing command: " + e.getMessage());
+                    e.printStackTrace();
                 }
             }
         } catch (Exception e) {

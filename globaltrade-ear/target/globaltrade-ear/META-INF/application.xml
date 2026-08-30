@@ -3,12 +3,12 @@
   <display-name>globaltrade-ear</display-name>
   <module>
     <web>
-      <web-uri>com.globaltrade-globaltrade-web-1.0-SNAPSHOT.war</web-uri>
+      <web-uri>globaltrade-web.war</web-uri>
       <context-root>/globaltrade</context-root>
     </web>
   </module>
   <module>
-    <ejb>com.globaltrade-globaltrade-ejb-1.0-SNAPSHOT.jar</ejb>
+    <ejb>globaltrade-ejb.jar</ejb>
   </module>
   <library-directory>lib</library-directory>
 </application>

@@ -1,0 +1,4 @@
+com\globaltrade\core\entity\OrderItem.class
+com\globaltrade\core\entity\Order.class
+com\globaltrade\core\entity\Customer.class
+com\globaltrade\core\entity\Inventory.class

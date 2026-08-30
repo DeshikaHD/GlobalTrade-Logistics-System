@@ -63,6 +63,9 @@ public class OrderManagerBean implements OrderManagerLocal, OrderManagerRemote {
         }
         
         em.persist(order);
+        em.flush();
+        em.detach(order);
+        order.setOrderItems(new ArrayList<>(order.getOrderItems()));
         return order;
     }
 
@@ -75,6 +78,8 @@ public class OrderManagerBean implements OrderManagerLocal, OrderManagerRemote {
 
         List<Order> safeOrders = new ArrayList<>();
         for (Order o : orders) {
+            em.detach(o);
+            o.setCustomer(null);
             List<OrderItem> safeItems = new ArrayList<>(o.getOrderItems());
             o.setOrderItems(safeItems);
             safeOrders.add(o);
