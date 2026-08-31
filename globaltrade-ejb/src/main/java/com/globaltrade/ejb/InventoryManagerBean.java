@@ -2,10 +2,13 @@ package com.globaltrade.ejb;
 
 import com.globaltrade.core.entity.Inventory;
 import com.globaltrade.ejb.interceptor.AuditLoggingInterceptor;
+import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
 import jakarta.interceptor.Interceptors;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -27,5 +30,16 @@ public class InventoryManagerBean implements InventoryManagerLocal, InventoryMan
         List<Inventory> results = em.createQuery("SELECT i FROM Inventory i WHERE i.quantityAvailable > 0", Inventory.class)
                                     .getResultList();
         return new ArrayList<>(results);
+    }
+
+    @Override
+    @PermitAll
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void updateInventoryQuantity(String sku, int newQuantity) {
+        Inventory inv = em.createQuery("SELECT i FROM Inventory i WHERE i.sku = :sku", Inventory.class)
+                          .setParameter("sku", sku)
+                          .getSingleResult();
+        inv.setQuantityAvailable(newQuantity);
+        em.merge(inv);
     }
 }

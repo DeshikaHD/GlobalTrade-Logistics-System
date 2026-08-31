@@ -54,6 +54,9 @@ public class HospitalActor {
                         List<Order> orders = orderManager.getOrdersForCustomer(hospitalId);
                         for (Order o : orders) {
                             System.out.println("Order #" + o.getId() + " [" + o.getStatus() + "]");
+                            if ("DELAYED_TRANSIT_ISSUE".equals(o.getStatus())) {
+                                System.out.println("  *** ALERT: Delivery delayed due to truck breakdown or weather issue! ***");
+                            }
                             for (OrderItem item : o.getOrderItems()) {
                                 System.out.println("  - " + item.getInventory().getProductName() + " x" + item.getQuantity());
                             }

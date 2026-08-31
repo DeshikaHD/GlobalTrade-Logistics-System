@@ -13,6 +13,7 @@ import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,9 +32,12 @@ public class WarehouseManagerBeanTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClasses(WarehouseManagerBean.class, WarehouseManagerLocal.class, WarehouseManagerRemote.class, WarehouseManagerTestWrapper.class)
-                .addClasses(Customer.class, Inventory.class, Order.class, OrderItem.class, InsufficientStockException.class)
-                .addAsManifestResource(new File("../globaltrade-core/src/main/resources/META-INF/persistence.xml"), "persistence.xml")
+                .addClasses(WarehouseManagerBean.class, WarehouseManagerLocal.class, WarehouseManagerRemote.class,
+                        WarehouseManagerTestWrapper.class)
+                .addClasses(Customer.class, Inventory.class, Order.class, OrderItem.class,
+                        InsufficientStockException.class)
+                .addAsManifestResource(new File("../globaltrade-core/src/main/resources/META-INF/persistence.xml"),
+                        "persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
@@ -49,10 +53,13 @@ public class WarehouseManagerBeanTest {
     private Long testOrderId;
     private Long testInventoryId;
     private Long insufficientStockOrderId;
+    private Long customerId;
+    private Long inv2Id;
 
     @BeforeEach
     public void setupData() throws Exception {
-        jakarta.transaction.UserTransaction utx = (jakarta.transaction.UserTransaction) new javax.naming.InitialContext().lookup("java:comp/UserTransaction");
+        jakarta.transaction.UserTransaction utx = (jakarta.transaction.UserTransaction) new javax.naming.InitialContext()
+                .lookup("java:comp/UserTransaction");
         utx.begin();
         em.joinTransaction();
 
@@ -77,6 +84,33 @@ public class WarehouseManagerBeanTest {
         orderFail.addOrderItem(itemFail);
         em.persist(orderFail);
         insufficientStockOrderId = orderFail.getId();
+        
+        customerId = customer.getId();
+        inv2Id = inv2.getId();
+
+        utx.commit();
+    }
+
+    @AfterEach
+    public void cleanupData() throws Exception {
+        jakarta.transaction.UserTransaction utx = (jakarta.transaction.UserTransaction) new javax.naming.InitialContext().lookup("java:comp/UserTransaction");
+        utx.begin();
+        em.joinTransaction();
+
+        Order o1 = em.find(Order.class, testOrderId);
+        if (o1 != null) em.remove(o1);
+
+        Order o2 = em.find(Order.class, insufficientStockOrderId);
+        if (o2 != null) em.remove(o2);
+
+        Inventory i1 = em.find(Inventory.class, testInventoryId);
+        if (i1 != null) em.remove(i1);
+
+        Inventory i2 = em.find(Inventory.class, inv2Id);
+        if (i2 != null) em.remove(i2);
+
+        Customer c = em.find(Customer.class, customerId);
+        if (c != null) em.remove(c);
 
         utx.commit();
     }
@@ -85,7 +119,7 @@ public class WarehouseManagerBeanTest {
     public void testGetPendingOrders_WithWrapper() {
         List<Order> pendingOrders = warehouseWrapper.getPendingOrders();
         assertFalse(pendingOrders.isEmpty(), "Should retrieve pending orders");
-        
+
         boolean foundTestOrder = false;
         for (Order o : pendingOrders) {
             if (o.getId().equals(testOrderId)) {
@@ -93,7 +127,8 @@ public class WarehouseManagerBeanTest {
                 // Verify collections were eagerly loaded and wrapper stripped
                 assertNotNull(o.getCustomer(), "Customer should be loaded");
                 assertFalse(o.getOrderItems().isEmpty(), "Order items should be loaded");
-                assertEquals(ArrayList.class, o.getOrderItems().getClass(), "PersistentBag should be stripped to ArrayList");
+                assertEquals(ArrayList.class, o.getOrderItems().getClass(),
+                        "PersistentBag should be stripped to ArrayList");
             }
         }
         assertTrue(foundTestOrder, "The test order should be in the pending list");
@@ -102,10 +137,10 @@ public class WarehouseManagerBeanTest {
     @Test
     public void testPackOrder_Success() {
         warehouseWrapper.packOrder(testOrderId);
-        
+
         Order updatedOrder = em.find(Order.class, testOrderId);
         assertEquals("PACKED", updatedOrder.getStatus(), "Order status should be updated to PACKED");
-        
+
         Inventory updatedInv = em.find(Inventory.class, testInventoryId);
         assertEquals(90, updatedInv.getQuantityAvailable(), "Inventory quantity should be deducted (100 - 10)");
     }

@@ -1,3 +1,8 @@
+com\globaltrade\ejb\CarrierManagerTestWrapper.class
+com\globaltrade\ejb\SupplierOrderManagerBeanTest.class
 com\globaltrade\ejb\OrderManagerBeanTest.class
-com\globaltrade\ejb\WarehouseManagerTestWrapper.class
+com\globaltrade\ejb\CarrierManagerBeanTest.class
 com\globaltrade\ejb\WarehouseManagerBeanTest.class
+com\globaltrade\ejb\WarehouseManagerTestWrapper.class
+com\globaltrade\ejb\CarrierDispatchPollerBeanTest.class
+com\globaltrade\ejb\InventoryReplenishmentPollerBeanTest.class

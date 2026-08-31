@@ -11,6 +11,8 @@
         <class>com.globaltrade.core.entity.Inventory</class>
         <class>com.globaltrade.core.entity.Order</class>
         <class>com.globaltrade.core.entity.OrderItem</class>
+        <class>com.globaltrade.core.entity.Vendor</class>
+        <class>com.globaltrade.core.entity.SupplierOrder</class>
 
         <properties>
             <property name="jakarta.persistence.schema-generation.database.action" value="update"/>

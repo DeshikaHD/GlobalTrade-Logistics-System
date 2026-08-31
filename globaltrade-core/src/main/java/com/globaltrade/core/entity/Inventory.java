@@ -31,6 +31,20 @@ public class Inventory implements Serializable {
     @Column(name = "warehouse_location", nullable = false, length = 100)
     private String warehouseLocation;
 
+    @NotNull
+    @Min(0)
+    @Column(name = "reorder_threshold", nullable = false, columnDefinition = "integer default 0")
+    private Integer reorderThreshold;
+
+    @NotNull
+    @Min(1)
+    @Column(name = "reorder_quantity", nullable = false, columnDefinition = "integer default 1")
+    private Integer reorderQuantity;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vendor_id")
+    private Vendor primaryVendor;
+
     public Inventory() {
     }
 
@@ -39,6 +53,16 @@ public class Inventory implements Serializable {
         this.sku = sku;
         this.quantityAvailable = quantityAvailable;
         this.warehouseLocation = warehouseLocation;
+    }
+
+    public Inventory(String productName, String sku, Integer quantityAvailable, String warehouseLocation, Integer reorderThreshold, Integer reorderQuantity, Vendor primaryVendor) {
+        this.productName = productName;
+        this.sku = sku;
+        this.quantityAvailable = quantityAvailable;
+        this.warehouseLocation = warehouseLocation;
+        this.reorderThreshold = reorderThreshold;
+        this.reorderQuantity = reorderQuantity;
+        this.primaryVendor = primaryVendor;
     }
 
     public Long getId() {
@@ -79,5 +103,29 @@ public class Inventory implements Serializable {
 
     public void setWarehouseLocation(String warehouseLocation) {
         this.warehouseLocation = warehouseLocation;
+    }
+
+    public Integer getReorderThreshold() {
+        return reorderThreshold;
+    }
+
+    public void setReorderThreshold(Integer reorderThreshold) {
+        this.reorderThreshold = reorderThreshold;
+    }
+
+    public Integer getReorderQuantity() {
+        return reorderQuantity;
+    }
+
+    public void setReorderQuantity(Integer reorderQuantity) {
+        this.reorderQuantity = reorderQuantity;
+    }
+
+    public Vendor getPrimaryVendor() {
+        return primaryVendor;
+    }
+
+    public void setPrimaryVendor(Vendor primaryVendor) {
+        this.primaryVendor = primaryVendor;
     }
 }

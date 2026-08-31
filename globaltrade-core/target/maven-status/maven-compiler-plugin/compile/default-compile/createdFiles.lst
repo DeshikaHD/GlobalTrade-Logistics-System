@@ -1,5 +1,9 @@
 com\globaltrade\core\exception\InsufficientStockException.class
 com\globaltrade\core\entity\Order.class
 com\globaltrade\core\entity\Inventory.class
+com\globaltrade\core\entity\Vendor.class
 com\globaltrade\core\entity\OrderItem.class
+com\globaltrade\core\exception\CarrierTransitException.class
+com\globaltrade\core\exception\VendorSystemOutageException.class
 com\globaltrade\core\entity\Customer.class
+com\globaltrade\core\entity\SupplierOrder.class

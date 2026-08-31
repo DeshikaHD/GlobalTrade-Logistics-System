@@ -149,7 +149,16 @@ public class OrderManagerBeanTest {
 | `WarehouseManagerBeanTest` | `testPackOrder_InsufficientStock` | Validates `InsufficientStockException` is thrown when stock is low | PASSED |
 | `WarehouseManagerBeanTest` | `testSecurity_DirectAccessBlocked` | Validates `@RolesAllowed` blocks anonymous callers | PASSED |
 | `CarrierDispatchPollerBeanTest` | `testPollDeliveryStatus_Lifecycle` | Validates timer logic shifting orders from PACKED to SHIPPED to DELIVERED | PENDING |
+| `CarrierManagerBeanTest` | `testUpdateTransitStatus_Delivered` | Validates that DELIVERED event sets status to DELIVERED | PASSED |
+| `CarrierManagerBeanTest` | `testUpdateTransitStatus_Breakdown_RollbackAndRecover` | Validates rollback and REQUIRES_NEW recovery logic for BREAKDOWN | PASSED |
+| `CarrierManagerBeanTest` | `testSecurity_DirectAccessBlocked` | Validates `@RolesAllowed("CARRIER")` blocks anonymous access | PASSED |
+| `SupplierOrderManagerBeanTest` | `testPlaceRestockOrder_Success` | Validates that a valid restock order is persisted correctly | PASSED |
+| `SupplierOrderManagerBeanTest` | `testPlaceRestockOrder_VendorOutage` | Validates that `VendorSystemOutageException` is thrown during a simulated outage | PASSED |
+| `InventoryReplenishmentPollerBeanTest` | `testPollerExecutesReplenishmentAndResistsOutage` | Validates timer creates SupplierOrders for low stock and resists vendor outages without crashing | PASSED |
+| `WMSReconciliationTest` | `testReconciliationTriggersRestock` | Validates that discrepancies between WMS and DB are reconciled before the timer places restock orders | PASSED |
 
 **Critical Analysis:**
 By utilizing **Arquillian** for Integration Testing, we validate the EJB lifecycle and security context within an actual Application Server (WildFly) instead of relying on mocked behavior. 
 The security test proves that the container's declarative authorization effectively identifies and rejects unauthorized caller principals, satisfying the strict supply chain security requirements defined in the architecture.
+
+*Note on Database Integrity:* All Arquillian tests (`WarehouseManagerBeanTest`, `CarrierManagerBeanTest`) have been updated with `@AfterEach` cleanup methods to explicitly remove any dummy entities (`Customer`, `Order`, `Inventory`) persisted during test initialization, ensuring the live PostgreSQL database is not polluted across test runs.
