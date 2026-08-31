@@ -2,3 +2,4 @@ C:\Document\JAVA INSTITUTE\BCD I\Projects\GlobalTrade Logistics System\globaltra
 C:\Document\JAVA INSTITUTE\BCD I\Projects\GlobalTrade Logistics System\globaltrade-core\src\main\java\com\globaltrade\core\entity\Inventory.java
 C:\Document\JAVA INSTITUTE\BCD I\Projects\GlobalTrade Logistics System\globaltrade-core\src\main\java\com\globaltrade\core\entity\Order.java
 C:\Document\JAVA INSTITUTE\BCD I\Projects\GlobalTrade Logistics System\globaltrade-core\src\main\java\com\globaltrade\core\entity\OrderItem.java
+C:\Document\JAVA INSTITUTE\BCD I\Projects\GlobalTrade Logistics System\globaltrade-core\src\main\java\com\globaltrade\core\exception\InsufficientStockException.java

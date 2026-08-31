@@ -55,6 +55,13 @@ public class OrderManagerBean implements OrderManagerLocal, OrderManagerRemote {
                 Inventory inv = em.createQuery("SELECT i FROM Inventory i WHERE i.productName = :name", Inventory.class)
                                   .setParameter("name", prodName)
                                   .getSingleResult();
+                
+                if (inv.getQuantityAvailable() < reqItem.getQuantity()) {
+                    throw new IllegalArgumentException("Insufficient inventory for product: " + prodName);
+                }
+                
+                inv.setQuantityAvailable(inv.getQuantityAvailable() - reqItem.getQuantity());
+                
                 OrderItem realItem = new OrderItem(order, inv, reqItem.getQuantity());
                 order.addOrderItem(realItem);
             } catch (NoResultException e) {

@@ -13,7 +13,7 @@
         <class>com.globaltrade.core.entity.OrderItem</class>
 
         <properties>
-            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="jakarta.persistence.schema-generation.database.action" value="update"/>
             <property name="jakarta.persistence.sql-load-script-source" value="import.sql"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>

@@ -1,7 +1,10 @@
 com\globaltrade\ejb\InventoryManagerBean.class
+com\globaltrade\ejb\WarehouseManagerBean.class
 com\globaltrade\ejb\OrderManagerLocal.class
+com\globaltrade\ejb\WarehouseManagerRemote.class
 com\globaltrade\ejb\OrderManagerRemote.class
 com\globaltrade\ejb\InventoryManagerLocal.class
 com\globaltrade\ejb\interceptor\AuditLoggingInterceptor.class
 com\globaltrade\ejb\OrderManagerBean.class
+com\globaltrade\ejb\WarehouseManagerLocal.class
 com\globaltrade\ejb\InventoryManagerRemote.class
