@@ -71,6 +71,9 @@ public class InventoryTest {
 | `CustomerTest` | `testValidCustomer` | Verifies that a correctly populated Customer passes validation | PASSED |
 | `CustomerTest` | `testCustomerNameTooShort` | Verifies that a name with length < 2 triggers a violation | PASSED |
 | `CustomerTest` | `testCustomerNameBlank` | Verifies that a blank name triggers a `@NotBlank` violation | PASSED |
+| `SupplierOrderTest` | `testValidSupplierOrder` | Verifies that a correctly populated SupplierOrder passes validation | PASSED |
+| `SupplierOrderTest` | `testQuantityBelowMinimum` | Verifies that quantity < 1 triggers a `@Min(1)` violation | PASSED |
+| `SupplierOrderTest` | `testBlankSku` | Verifies that a blank SKU triggers a `@NotBlank` violation | PASSED |
 
 ---
 
@@ -148,7 +151,7 @@ public class OrderManagerBeanTest {
 | `WarehouseManagerBeanTest` | `testPackOrder_Success` | Validates physical stock deduction and status update | PASSED |
 | `WarehouseManagerBeanTest` | `testPackOrder_InsufficientStock` | Validates `InsufficientStockException` is thrown when stock is low | PASSED |
 | `WarehouseManagerBeanTest` | `testSecurity_DirectAccessBlocked` | Validates `@RolesAllowed` blocks anonymous callers | PASSED |
-| `CarrierDispatchPollerBeanTest` | `testPollDeliveryStatus_Lifecycle` | Validates timer logic shifting orders from PACKED to SHIPPED to DELIVERED | PASSED |
+| `CarrierDispatchPollerBeanTest` | `testPollDeliveryStatus_Lifecycle` | Validates timer logic shifting orders from PACKED to SHIPPED to DELIVERED (including instantaneous transitions from the simulator) | PASSED |
 | `CarrierManagerBeanTest` | `testUpdateTransitStatus_Delivered` | Validates that DELIVERED event sets status to DELIVERED | PASSED |
 | `CarrierManagerBeanTest` | `testUpdateTransitStatus_Breakdown_RollbackAndRecover` | Validates rollback and REQUIRES_NEW recovery logic for BREAKDOWN | PASSED |
 | `CarrierManagerBeanTest` | `testSecurity_DirectAccessBlocked` | Validates `@RolesAllowed("CARRIER")` blocks anonymous access | PASSED |
@@ -156,6 +159,14 @@ public class OrderManagerBeanTest {
 | `SupplierOrderManagerBeanTest` | `testPlaceRestockOrder_VendorOutage` | Validates that `VendorSystemOutageException` is thrown during a simulated outage | PASSED |
 | `InventoryReplenishmentPollerBeanTest` | `testPollerExecutesReplenishmentAndResistsOutage` | Validates timer creates SupplierOrders for low stock and resists vendor outages without crashing | PASSED |
 | `WMSReconciliationTest` | `testReconciliationTriggersRestock` | Validates that discrepancies between WMS and DB are reconciled before the timer places restock orders | PASSED |
+| `SupplierIntegrationFacadeBeanIT` | `testDirectAccessFailsWithoutRole` | Validates that `@RolesAllowed("VENDOR")` blocks unauthenticated direct access | PASSED |
+| `SupplierIntegrationFacadeBeanIT` | `testFulfillOrderSuccess` | Validates order fulfillment logic and correct `Shipment` entity creation with `READY_FOR_EXPORT` status | PASSED |
+| `SupplierIntegrationFacadeBeanIT` | `testFulfillOrderInvalidState` | Validates `InvalidOrderStateException` is thrown when attempting to fulfill a non-REQUESTED order | PASSED |
+| `CustomsGatewayBeanIT` | `testSubmitDeclarationSuccess` | Validates successful customs declaration submission and state transition to `AT_BORDER_PENDING_CLEARANCE` | PASSED |
+| `CustomsGatewayBeanIT` | `testSubmitDeclarationRejection_MissingTaxes` | Validates `CustomsClearanceRejectedException` is thrown and transaction rolls back on missing taxes | PASSED |
+| `CustomsGatewayBeanIT` | `testApproveShipment` | Validates that approving a shipment transitions its status to `CLEARED` | PASSED |
+| `CustomsGatewayBeanIT` | `testRejectShipment` | Validates that rejecting a shipment transitions its status to `CUSTOMS_PAPERWORK_REJECTED` | PASSED |
+| `CustomsGatewayBeanIT` | `testGetPendingClearanceShipments` | Validates retrieval of shipments currently awaiting customs clearance | PASSED |
 
 **Critical Analysis:**
 By utilizing **Arquillian** for Integration Testing, we validate the EJB lifecycle and security context within an actual Application Server (WildFly) instead of relying on mocked behavior. 

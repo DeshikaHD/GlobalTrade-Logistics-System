@@ -35,7 +35,7 @@ public class WMSReconciliationTest {
                 .addClasses(SupplierOrderManagerBean.class, SupplierOrderManagerLocal.class, SupplierOrderManagerRemote.class)
                 .addClasses(WarehouseManagementSystemSimulatorBean.class, WMSSimulatorLocal.class, WMSSimulatorRemote.class)
                 .addClasses(InventoryManagerBean.class, InventoryManagerLocal.class, InventoryManagerRemote.class)
-                .addClasses(SupplierOrder.class, Vendor.class, Inventory.class, VendorSystemOutageException.class, AuditLoggingInterceptor.class)
+                .addClasses(SupplierOrder.class, Vendor.class, Inventory.class, VendorSystemOutageException.class, com.globaltrade.core.exception.SupplierNotEligibleException.class, com.globaltrade.core.entity.Shipment.class, com.globaltrade.core.enums.ShipmentStatus.class, AuditLoggingInterceptor.class)
                 .addClasses(com.globaltrade.core.entity.Customer.class, com.globaltrade.core.entity.Order.class, com.globaltrade.core.entity.OrderItem.class)
                 .addAsManifestResource(new File("../globaltrade-core/src/main/resources/META-INF/persistence.xml"),
                         "persistence.xml")

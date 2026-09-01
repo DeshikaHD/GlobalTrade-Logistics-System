@@ -1,3 +1,5 @@
 com\globaltrade\client\CarrierActor.class
 com\globaltrade\client\WarehouseActor.class
 com\globaltrade\client\HospitalActor.class
+com\globaltrade\client\VendorActor.class
+com\globaltrade\client\CustomsActor.class

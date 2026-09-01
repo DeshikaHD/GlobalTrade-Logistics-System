@@ -1,6 +1,8 @@
 package com.globaltrade.ejb;
 
 import com.globaltrade.core.entity.Order;
+import com.globaltrade.core.entity.Shipment;
+import com.globaltrade.core.enums.ShipmentStatus;
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
@@ -24,6 +26,16 @@ public class ExceptionRecoveryServiceBean implements ExceptionRecoveryServiceLoc
         if (order != null) {
             order.setStatus("DELAYED_TRANSIT_ISSUE");
             em.merge(order);
+        }
+    }
+
+    @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void recoverFromCustomsRejection(Long shipmentId) {
+        Shipment shipment = em.find(Shipment.class, shipmentId);
+        if (shipment != null) {
+            shipment.setStatus(ShipmentStatus.CUSTOMS_PAPERWORK_REJECTED);
+            em.merge(shipment);
         }
     }
 }

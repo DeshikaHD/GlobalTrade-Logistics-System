@@ -33,9 +33,19 @@ public class SupplierOrderManagerBean implements SupplierOrderManagerLocal, Supp
             throw new IllegalArgumentException("Vendor not found with ID: " + vendor.getId());
         }
 
+        if (managedVendor.getIsEligible() == null || !managedVendor.getIsEligible()) {
+            throw new com.globaltrade.core.exception.SupplierNotEligibleException("Vendor is not eligible to receive orders.");
+        }
+
         simulateVendorApiCall(managedVendor);
 
+        com.globaltrade.core.entity.Inventory inventory = entityManager.createQuery("SELECT i FROM Inventory i WHERE i.sku = :sku", com.globaltrade.core.entity.Inventory.class)
+            .setParameter("sku", sku)
+            .getResultStream().findFirst().orElse(null);
+        String productName = inventory != null ? inventory.getProductName() : "Unknown Product";
+
         SupplierOrder order = new SupplierOrder(managedVendor, sku, quantity, "REQUESTED");
+        order.setProductName(productName);
         entityManager.persist(order);
         
         LOGGER.info("Successfully placed restock order for SKU: " + sku + " with Vendor: " + managedVendor.getName());

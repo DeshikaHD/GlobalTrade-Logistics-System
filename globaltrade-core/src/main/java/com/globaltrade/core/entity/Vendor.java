@@ -20,6 +20,12 @@ public class Vendor implements Serializable {
     @Column(name = "contact_info", nullable = false, length = 150)
     private String contactInfo;
 
+    @Column(nullable = false)
+    private Integer rating = 100;
+
+    @Column(name = "is_eligible", nullable = false)
+    private Boolean isEligible = true;
+
     public Vendor() {
     }
 
@@ -50,5 +56,21 @@ public class Vendor implements Serializable {
 
     public void setContactInfo(String contactInfo) {
         this.contactInfo = contactInfo;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+
+    public Boolean getIsEligible() {
+        return isEligible;
+    }
+
+    public void setIsEligible(Boolean isEligible) {
+        this.isEligible = isEligible;
     }
 }

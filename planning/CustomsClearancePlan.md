@@ -49,7 +49,7 @@ To implement this complex process within our Java EE architecture while hitting 
 
 ## Phase 1: Data Layer (Entities & Enums)
 Before writing business logic, we need the database structures to hold the customs data and track the state of the shipment.
-*   **Create `ShipmentStatus` Enum:** Add `PENDING_CUSTOMS`, `AT_BORDER`, `CLEARED`, `REJECTED`.
+*   **Create `ShipmentStatus` Enum:** Add `READY_FOR_EXPORT`, `AT_BORDER_PENDING_CLEARANCE`, `CLEARED`, `CUSTOMS_PAPERWORK_REJECTED`.
 *   **Create `CustomsDeclaration` Entity:** An entity linked to a shipment containing `hsCode`, `taxPaid`, `brokerName`, and `submissionDate`.
 *   **Create `CustomsAuditLog` Entity:** An immutable table specifically for our interceptor to log every interaction with the government.
 
@@ -72,11 +72,11 @@ When customs rejects a shipment, we must ensure our database doesn't accidentall
 ## Phase 5: Automated Monitoring (EJB Timer Service)
 If a shipment is stuck at the border, the port charges daily demurrage fees. Our system needs to actively monitor for this.
 *   **Create `CustomsMonitorTimerBean`:** A `@Singleton` or `@Stateless` bean.
-*   **Implementation:** Use the `@Schedule` annotation (e.g., every day at midnight, or every 5 minutes for testing). The timer will query the database for any shipment in the `AT_BORDER` state for more than 48 hours and log a critical alert.
+*   **Implementation:** Use the `@Schedule` annotation (e.g., every day at midnight, or every 5 minutes for testing). The timer will query the database for any shipment in the `AT_BORDER_PENDING_CLEARANCE` state for more than 48 hours and log a critical alert.
 
 ## Phase 6: End-of-Project Arquillian Testing
 Following our strict project rules, testing will be done exclusively using Arquillian inside the EJB container.
-*   **Test Data Setup:** Explicitly construct and `persist()` Orders, Shipments, and Declarations in the test setup. Ensure all `@Column(nullable=false)` fields are populated.
+*   **Test Data Setup:** Explicitly construct and `persist()` SupplierOrders, Shipments, and Declarations in the test setup. Ensure all `@Column(nullable=false)` fields are populated.
 *   **Security Testing:** Use the "Wrapper Bean" pattern. Create a top-level `@Stateless` bean annotated with `@RunAs("CUSTOMS_OFFICIAL")` and `@PermitAll` to securely invoke our `CustomsGatewayBean` without triggering an anonymous `EJBAccessException`.
 *   **Exception Testing:** Verify that throwing `CustomsClearanceRejectedException` correctly aborts the transaction and leaves the database state unmodified.
 *   **ShrinkWrap:** Explicitly add our custom exceptions to the `.addClasses()` list in the micro-deployment to prevent `ClassNotFoundException` crashes over RMI.

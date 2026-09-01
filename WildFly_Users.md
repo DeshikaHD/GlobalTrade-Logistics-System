@@ -25,3 +25,10 @@ This actor represents the hospital (the customer). It interacts with `OrderManag
 ---
 **How to add these users:**
 Open Command Prompt, navigate to your WildFly `bin` directory (e.g., `C:\wildfly-27.0.1.Final\bin`), and paste the commands provided above.
+
+## 4. Vendor Portal (`VendorActor.java`)
+This actor represents the supplier fulfilling restock orders. It interacts with `SupplierIntegrationFacadeBean`.
+* **Username:** `vendor1`
+* **Password:** `Vendor123!`
+* **Group / Role:** `VENDOR`
+* **Add Command (Windows):** `add-user.bat -a -u "vendor1" -p "Vendor123!" -g "VENDOR"`
