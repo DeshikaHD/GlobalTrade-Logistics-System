@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.globaltrade.ejb.CarrierDispatchPollerBeanTest" time="9.898" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.globaltrade.ejb.CarrierDispatchPollerBeanTest" time="4.93" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="env.NUMBER_OF_PROCESSORS" value="16"/>
     <property name="env.ONEDRIVE" value="C:\Users\Hiruni\OneDrive"/>
@@ -12,7 +12,7 @@
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="env.OS" value="Windows_NT"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-22\bin"/>
-    <property name="sun.java.command" value="C:\Users\Hiruni\AppData\Local\Temp\surefire16134128816284955654\surefirebooter-20260901192135134_7.jar C:\Users\Hiruni\AppData\Local\Temp\surefire16134128816284955654 2026-09-01T19-21-29_097-jvmRun1 surefire-20260901192135134_5tmp surefire_1-20260901192135134_6tmp"/>
+    <property name="sun.java.command" value="C:\Users\Hiruni\AppData\Local\Temp\surefire1126672325695978177\surefirebooter-20260901200348468_7.jar C:\Users\Hiruni\AppData\Local\Temp\surefire1126672325695978177 2026-09-01T20-03-44_804-jvmRun1 surefire-20260901200348468_5tmp surefire_1-20260901200348468_6tmp"/>
     <property name="env.SYSTEMROOT" value="C:\WINDOWS"/>
     <property name="jdk.debug" value="release"/>
     <property name="env.WILDFLY_HOME" value="C:\wildfly\wildfly-26.1.3.Final"/>
@@ -104,7 +104,7 @@
     <property name="env.EFC_15556_2283032206" value="1"/>
     <property name="env.FILE_ARG" value="pom.xml"/>
     <property name="env.MAVEN_HOME" value="C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.1\plugins\maven\lib\maven3"/>
-    <property name="surefire.real.class.path" value="C:\Users\Hiruni\AppData\Local\Temp\surefire16134128816284955654\surefirebooter-20260901192135134_7.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Hiruni\AppData\Local\Temp\surefire1126672325695978177\surefirebooter-20260901200348468_7.jar"/>
     <property name="env.INTELLIJ IDEA" value="C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.1\bin"/>
     <property name="env.WDIR" value="C:\"/>
     <property name="stdout.encoding" value="Cp1252"/>
@@ -136,16 +136,16 @@
     <property name="env.TEMP" value="C:\Users\Hiruni\AppData\Local\Temp"/>
     <property name="java.class.version" value="66.0"/>
   </properties>
-  <testcase name="testPollDeliveryStatus_Lifecycle" classname="com.globaltrade.ejb.CarrierDispatchPollerBeanTest" time="0.89">
-    <system-err><![CDATA[Sep 01, 2026 7:21:37 PM org.jboss.threads.Version <clinit>
+  <testcase name="testPollDeliveryStatus_Lifecycle" classname="com.globaltrade.ejb.CarrierDispatchPollerBeanTest" time="0.373">
+    <system-err><![CDATA[Sep 01, 2026 8:03:50 PM org.jboss.threads.Version <clinit>
 INFO: JBoss Threads version 2.4.0.Final
-Sep 01, 2026 7:21:39 PM org.jboss.remoting3.EndpointImpl <clinit>
+Sep 01, 2026 8:03:51 PM org.jboss.remoting3.EndpointImpl <clinit>
 INFO: JBoss Remoting version 5.0.27.Final
-Sep 01, 2026 7:21:39 PM org.xnio.Xnio <clinit>
+Sep 01, 2026 8:03:51 PM org.xnio.Xnio <clinit>
 INFO: XNIO version 3.8.11.Final
-Sep 01, 2026 7:21:39 PM org.xnio.nio.NioXnio <clinit>
+Sep 01, 2026 8:03:51 PM org.xnio.nio.NioXnio <clinit>
 INFO: XNIO NIO Implementation Version 3.8.11.Final
-Sep 01, 2026 7:21:41 PM org.wildfly.security.Version <clinit>
+Sep 01, 2026 8:03:51 PM org.wildfly.security.Version <clinit>
 INFO: ELY00001: WildFly Elytron version 2.2.2.Final
 ]]></system-err>
   </testcase>

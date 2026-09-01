@@ -29,6 +29,9 @@ public class Order implements Serializable {
     @Column(nullable = false, length = 50)
     private String status;
 
+    @Column(unique = true)
+    private String trackingNumber;
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<OrderItem> orderItems = new ArrayList<>();
 
@@ -71,6 +74,14 @@ public class Order implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getTrackingNumber() {
+        return trackingNumber;
+    }
+
+    public void setTrackingNumber(String trackingNumber) {
+        this.trackingNumber = trackingNumber;
     }
 
     public List<OrderItem> getOrderItems() {

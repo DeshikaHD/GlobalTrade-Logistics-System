@@ -1,7 +1,6 @@
 package com.globaltrade.client;
 
-import com.globaltrade.core.entity.Order;
-import com.globaltrade.core.entity.OrderItem;
+
 import com.globaltrade.ejb.CarrierManagerRemote;
 
 import javax.naming.Context;
@@ -30,13 +29,13 @@ public class CarrierActor {
 
             // Force immediate authentication test due to WildFly lazy JNDI
             try {
-                carrierManager.getShippedOrders();
+                carrierManager.getManifest();
             } catch (Exception e) {
                 System.out.println("Authentication failed: Invalid username or password, or server is unreachable.");
                 return;
             }
 
-            System.out.println("Welcome to the Carrier Operations Portal. Commands: manifest, deliver <OrderId>, breakdown <OrderId>, exit");
+            System.out.println("Welcome to the Carrier Operations Portal. Commands: manifest, pickup <TrackingNumber>, deliver <TrackingNumber>, breakdown <TrackingNumber>, exit");
 
             while (true) {
                 System.out.print("> ");
@@ -49,40 +48,51 @@ public class CarrierActor {
                 String cmd = parts[0].toLowerCase();
                 try {
                     if (cmd.equals("manifest")) {
-                        List<Order> orders = carrierManager.getShippedOrders();
-                        if (orders.isEmpty()) {
-                            System.out.println("No shipped orders currently on the truck.");
+                        List<String> trackingNumbers = carrierManager.getManifest();
+                        if (trackingNumbers.isEmpty()) {
+                            System.out.println("No shipped orders or inbound shipments currently waiting.");
                         } else {
-                            for (Order o : orders) {
-                                System.out.println("Order #" + o.getId() + " - To: " + o.getCustomer().getName() + " - Date: " + o.getOrderDate());
-                                for (OrderItem item : o.getOrderItems()) {
-                                    System.out.println("  - " + item.getInventory().getProductName() + " x" + item.getQuantity());
-                                }
+                            System.out.println("--- Manifest ---");
+                            for (String tracking : trackingNumbers) {
+                                System.out.println("Tracking Number: " + tracking);
                             }
+                        }
+                    } else if (cmd.equals("pickup")) {
+                        if (parts.length < 2) {
+                            System.out.println("Usage: pickup <TrackingNumber>");
+                            continue;
+                        }
+                        String trackingNumber = parts[1];
+                        
+                        try {
+                            carrierManager.updateTransitStatus(trackingNumber, "IN_TRANSIT");
+                            System.out.println("Item " + trackingNumber + " successfully marked as IN_TRANSIT!");
+                        } catch (Exception e) {
+                            System.out.println("Failed to pickup item: " + e.getMessage());
                         }
                     } else if (cmd.equals("deliver")) {
                         if (parts.length < 2) {
-                            System.out.println("Usage: deliver <OrderId>");
+                            System.out.println("Usage: deliver <TrackingNumber>");
                             continue;
                         }
-                        Long orderId = Long.parseLong(parts[1]);
+                        String trackingNumber = parts[1];
                         
                         try {
-                            carrierManager.updateTransitStatus(orderId, "DELIVERED");
-                            System.out.println("Order #" + orderId + " successfully marked as DELIVERED!");
+                            carrierManager.updateTransitStatus(trackingNumber, "DELIVERED");
+                            System.out.println("Item " + trackingNumber + " successfully marked as DELIVERED!");
                         } catch (Exception e) {
-                            System.out.println("Failed to deliver order: " + e.getMessage());
+                            System.out.println("Failed to deliver item: " + e.getMessage());
                         }
                     } else if (cmd.equals("breakdown")) {
                         if (parts.length < 2) {
-                            System.out.println("Usage: breakdown <OrderId>");
+                            System.out.println("Usage: breakdown <TrackingNumber>");
                             continue;
                         }
-                        Long orderId = Long.parseLong(parts[1]);
+                        String trackingNumber = parts[1];
                         
                         try {
-                            carrierManager.updateTransitStatus(orderId, "BREAKDOWN");
-                            System.out.println("Order #" + orderId + " breakdown reported. Should not reach here because of exception.");
+                            carrierManager.updateTransitStatus(trackingNumber, "BREAKDOWN");
+                            System.out.println("Item " + trackingNumber + " breakdown reported. Should not reach here because of exception.");
                         } catch (Exception e) {
                             System.out.println("Breakdown recorded (Exception Caught): " + e.getMessage());
                         }

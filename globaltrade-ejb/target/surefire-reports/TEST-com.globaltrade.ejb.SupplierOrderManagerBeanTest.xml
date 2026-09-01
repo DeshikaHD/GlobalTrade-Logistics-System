@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.globaltrade.ejb.SupplierOrderManagerBeanTest" time="4.428" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.globaltrade.ejb.SupplierOrderManagerBeanTest" time="2.088" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="env.NUMBER_OF_PROCESSORS" value="16"/>
     <property name="env.ONEDRIVE" value="C:\Users\Hiruni\OneDrive"/>
@@ -12,7 +12,7 @@
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="env.OS" value="Windows_NT"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-22\bin"/>
-    <property name="sun.java.command" value="C:\Users\Hiruni\AppData\Local\Temp\surefire16134128816284955654\surefirebooter-20260901192135134_7.jar C:\Users\Hiruni\AppData\Local\Temp\surefire16134128816284955654 2026-09-01T19-21-29_097-jvmRun1 surefire-20260901192135134_5tmp surefire_1-20260901192135134_6tmp"/>
+    <property name="sun.java.command" value="C:\Users\Hiruni\AppData\Local\Temp\surefire1126672325695978177\surefirebooter-20260901200348468_7.jar C:\Users\Hiruni\AppData\Local\Temp\surefire1126672325695978177 2026-09-01T20-03-44_804-jvmRun1 surefire-20260901200348468_5tmp surefire_1-20260901200348468_6tmp"/>
     <property name="env.SYSTEMROOT" value="C:\WINDOWS"/>
     <property name="jdk.debug" value="release"/>
     <property name="env.WILDFLY_HOME" value="C:\wildfly\wildfly-26.1.3.Final"/>
@@ -104,7 +104,7 @@
     <property name="env.EFC_15556_2283032206" value="1"/>
     <property name="env.FILE_ARG" value="pom.xml"/>
     <property name="env.MAVEN_HOME" value="C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.1\plugins\maven\lib\maven3"/>
-    <property name="surefire.real.class.path" value="C:\Users\Hiruni\AppData\Local\Temp\surefire16134128816284955654\surefirebooter-20260901192135134_7.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Hiruni\AppData\Local\Temp\surefire1126672325695978177\surefirebooter-20260901200348468_7.jar"/>
     <property name="env.INTELLIJ IDEA" value="C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.1\bin"/>
     <property name="env.WDIR" value="C:\"/>
     <property name="stdout.encoding" value="Cp1252"/>
@@ -136,6 +136,6 @@
     <property name="env.TEMP" value="C:\Users\Hiruni\AppData\Local\Temp"/>
     <property name="java.class.version" value="66.0"/>
   </properties>
-  <testcase name="testPlaceRestockOrder_Success" classname="com.globaltrade.ejb.SupplierOrderManagerBeanTest" time="0.437"/>
-  <testcase name="testPlaceRestockOrder_VendorOutage" classname="com.globaltrade.ejb.SupplierOrderManagerBeanTest" time="0.056"/>
+  <testcase name="testPlaceRestockOrder_Success" classname="com.globaltrade.ejb.SupplierOrderManagerBeanTest" time="0.193"/>
+  <testcase name="testPlaceRestockOrder_VendorOutage" classname="com.globaltrade.ejb.SupplierOrderManagerBeanTest" time="0.039"/>
 </testsuite>

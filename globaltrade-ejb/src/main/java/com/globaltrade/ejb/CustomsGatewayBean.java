@@ -60,7 +60,7 @@ public class CustomsGatewayBean implements CustomsGatewayLocal, CustomsGatewayRe
     public void approveShipment(Long shipmentId) {
         Shipment shipment = entityManager.find(Shipment.class, shipmentId);
         if (shipment != null) {
-            shipment.setStatus(ShipmentStatus.CLEARED);
+            shipment.setStatus(ShipmentStatus.CLEARED_CUSTOMS);
             entityManager.merge(shipment);
         }
     }

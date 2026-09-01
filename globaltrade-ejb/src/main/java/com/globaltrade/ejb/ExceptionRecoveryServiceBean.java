@@ -10,6 +10,7 @@ import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import java.util.List;
 
 @Stateless
 @Local(ExceptionRecoveryServiceLocal.class)
@@ -21,11 +22,22 @@ public class ExceptionRecoveryServiceBean implements ExceptionRecoveryServiceLoc
 
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public void recoverFromCarrierFailure(Long orderId) {
-        Order order = em.find(Order.class, orderId);
-        if (order != null) {
+    public void recoverFromCarrierFailure(String trackingNumber) {
+        List<Order> orders = em.createQuery("SELECT o FROM Order o WHERE o.trackingNumber = :trackingNumber", Order.class)
+                .setParameter("trackingNumber", trackingNumber).getResultList();
+        if (!orders.isEmpty()) {
+            Order order = orders.get(0);
             order.setStatus("DELAYED_TRANSIT_ISSUE");
             em.merge(order);
+            return;
+        }
+
+        List<Shipment> shipments = em.createQuery("SELECT s FROM Shipment s WHERE s.trackingNumber = :trackingNumber", Shipment.class)
+                .setParameter("trackingNumber", trackingNumber).getResultList();
+        if (!shipments.isEmpty()) {
+            Shipment shipment = shipments.get(0);
+            shipment.setStatus(ShipmentStatus.BREAKDOWN);
+            em.merge(shipment);
         }
     }
 

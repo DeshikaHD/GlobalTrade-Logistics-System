@@ -113,7 +113,7 @@ public class CustomsGatewayBeanIT {
         gatewayWrapper.approveShipment(testShipment.getId());
 
         Shipment updated = getShipmentFromDb(testShipment.getId());
-        assertEquals(ShipmentStatus.CLEARED, updated.getStatus());
+        assertEquals(ShipmentStatus.CLEARED_CUSTOMS, updated.getStatus());
     }
 
     @Test

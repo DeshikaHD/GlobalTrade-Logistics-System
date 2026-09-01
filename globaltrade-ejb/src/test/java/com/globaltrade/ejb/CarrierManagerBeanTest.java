@@ -35,7 +35,9 @@ public class CarrierManagerBeanTest {
                 .addClasses(ExceptionRecoveryServiceBean.class, ExceptionRecoveryServiceLocal.class,
                         ExceptionRecoveryServiceRemote.class)
                 .addClasses(Customer.class, Inventory.class, Order.class, OrderItem.class,
-                        CarrierTransitException.class, com.globaltrade.core.entity.Vendor.class)
+                        CarrierTransitException.class, com.globaltrade.core.entity.Vendor.class,
+                        com.globaltrade.core.entity.Shipment.class, com.globaltrade.core.enums.ShipmentStatus.class,
+                        com.globaltrade.core.entity.SupplierOrder.class)
                 .addAsManifestResource(new File("../globaltrade-core/src/main/resources/META-INF/persistence.xml"),
                         "persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
@@ -52,6 +54,8 @@ public class CarrierManagerBeanTest {
 
     private Long testOrderIdDelivered;
     private Long testOrderIdBreakdown;
+    private String tracking1;
+    private String tracking2;
     private Long customerId;
 
     @BeforeEach
@@ -66,10 +70,14 @@ public class CarrierManagerBeanTest {
         em.persist(customer);
 
         Order order1 = new Order(customer, LocalDateTime.now(), "SHIPPED");
+        tracking1 = "TRK-OUT-" + uniqueSuffix + "-1";
+        order1.setTrackingNumber(tracking1);
         em.persist(order1);
         testOrderIdDelivered = order1.getId();
 
         Order order2 = new Order(customer, LocalDateTime.now(), "SHIPPED");
+        tracking2 = "TRK-OUT-" + uniqueSuffix + "-2";
+        order2.setTrackingNumber(tracking2);
         em.persist(order2);
         testOrderIdBreakdown = order2.getId();
         
@@ -98,7 +106,7 @@ public class CarrierManagerBeanTest {
 
     @Test
     public void testUpdateTransitStatus_Delivered() {
-        wrapper.updateTransitStatus(testOrderIdDelivered, "DELIVERED");
+        wrapper.updateTransitStatus(tracking1, "DELIVERED");
         Order updatedOrder = em.find(Order.class, testOrderIdDelivered);
         assertEquals("DELIVERED", updatedOrder.getStatus(), "Order status should be updated to DELIVERED");
     }
@@ -106,7 +114,7 @@ public class CarrierManagerBeanTest {
     @Test
     public void testUpdateTransitStatus_Breakdown_RollbackAndRecover() {
         assertThrows(CarrierTransitException.class, () -> {
-            wrapper.updateTransitStatus(testOrderIdBreakdown, "BREAKDOWN");
+            wrapper.updateTransitStatus(tracking2, "BREAKDOWN");
         });
 
         Order recoveredOrder = em.find(Order.class, testOrderIdBreakdown);
@@ -117,7 +125,7 @@ public class CarrierManagerBeanTest {
     @Test
     public void testSecurity_DirectAccessBlocked() {
         assertThrows(jakarta.ejb.EJBAccessException.class, () -> {
-            rawManager.updateTransitStatus(testOrderIdDelivered, "DELIVERED");
+            rawManager.updateTransitStatus(tracking1, "DELIVERED");
         });
     }
 }
