@@ -19,6 +19,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import org.jboss.ejb3.annotation.TransactionTimeout;
 
 @DeclareRoles({"CUSTOMS_OFFICIAL", "ADMIN"})
 @Stateless
@@ -40,6 +42,7 @@ public class CustomsGatewayBean implements CustomsGatewayLocal, CustomsGatewayRe
 
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    @TransactionTimeout(value = 60, unit = TimeUnit.SECONDS)
     public CustomsDeclaration submitDeclaration(Long shipmentId, String hsCode, Double taxPaid, String brokerName) {
         if (taxPaid == null || taxPaid <= 0) {
             throw new CustomsClearanceRejectedException("Customs clearance rejected: Unpaid taxes.");

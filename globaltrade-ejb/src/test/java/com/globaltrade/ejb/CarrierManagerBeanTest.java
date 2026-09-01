@@ -40,6 +40,7 @@ public class CarrierManagerBeanTest {
                         com.globaltrade.core.entity.SupplierOrder.class)
                 .addAsManifestResource(new File("../globaltrade-core/src/main/resources/META-INF/persistence.xml"),
                         "persistence.xml")
+                .addPackage("com.globaltrade.ejb.interceptor").addPackage("com.globaltrade.core.entity").addPackage("com.globaltrade.core.enums").addPackage("com.globaltrade.core.exception")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
@@ -129,3 +130,4 @@ public class CarrierManagerBeanTest {
         });
     }
 }
+

@@ -12,10 +12,20 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.util.List;
 
+import jakarta.annotation.PostConstruct;
+import java.util.logging.Logger;
+
 @Stateless
 @Local(ExceptionRecoveryServiceLocal.class)
 @Remote(ExceptionRecoveryServiceRemote.class)
 public class ExceptionRecoveryServiceBean implements ExceptionRecoveryServiceLocal, ExceptionRecoveryServiceRemote {
+
+    private static final Logger LOGGER = Logger.getLogger(ExceptionRecoveryServiceBean.class.getName());
+
+    @PostConstruct
+    public void init() {
+        LOGGER.info("ExceptionRecoveryServiceBean ready - REQUIRES_NEW recovery operations available.");
+    }
 
     @PersistenceContext(unitName = "GlobalTradePU")
     private EntityManager em;

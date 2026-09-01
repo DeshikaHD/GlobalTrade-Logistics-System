@@ -32,7 +32,8 @@ public class CarrierDispatchPollerBeanTest {
                 .addClasses(CarrierDispatchPollerBean.class, CarrierDispatchPollerLocal.class, CarrierDispatchPollerRemote.class)
                 .addClasses(CarrierTrackingSimulatorBean.class, CarrierTrackingSimulatorLocal.class, CarrierTrackingSimulatorRemote.class)
                 .addClasses(Customer.class, Inventory.class, Order.class, OrderItem.class, com.globaltrade.core.entity.Vendor.class)
-                .addAsManifestResource(new File("../globaltrade-core/src/main/resources/META-INF/persistence.xml"), "persistence.xml")
+                .addPackage("com.globaltrade.ejb.interceptor").addPackage("com.globaltrade.core.entity").addPackage("com.globaltrade.core.enums").addPackage("com.globaltrade.core.exception").addAsManifestResource(new File("../globaltrade-core/src/main/resources/META-INF/persistence.xml"), "persistence.xml")
+                .addPackage("com.globaltrade.ejb.interceptor").addPackage("com.globaltrade.core.entity").addPackage("com.globaltrade.core.enums").addPackage("com.globaltrade.core.exception")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
@@ -88,3 +89,4 @@ public class CarrierDispatchPollerBeanTest {
         assertTrue(delivered, "Order should eventually be marked as DELIVERED by the simulator");
     }
 }
+

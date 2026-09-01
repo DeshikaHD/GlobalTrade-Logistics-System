@@ -1,3 +1,9 @@
 com\globaltrade\core\entity\CustomerTest.class
+com\globaltrade\core\entity\CustomsDeclarationTest.class
+com\globaltrade\core\entity\CustomsAuditLogTest.class
+com\globaltrade\core\entity\ShipmentTest.class
+com\globaltrade\core\entity\SupplierEvaluationTest.class
+com\globaltrade\core\entity\VendorTest.class
+com\globaltrade\core\entity\OrderTest.class
 com\globaltrade\core\entity\InventoryTest.class
 com\globaltrade\core\entity\SupplierOrderTest.class

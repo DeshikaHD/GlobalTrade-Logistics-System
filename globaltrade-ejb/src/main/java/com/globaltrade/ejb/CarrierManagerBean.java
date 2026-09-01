@@ -19,12 +19,22 @@ import com.globaltrade.core.enums.ShipmentStatus;
 import com.globaltrade.core.entity.SupplierOrder;
 import com.globaltrade.core.entity.Inventory;
 
+import jakarta.annotation.PostConstruct;
+import java.util.logging.Logger;
+
 @DeclareRoles({"CARRIER", "ADMIN"})
 @Stateless
 @Local(CarrierManagerLocal.class)
 @Remote(CarrierManagerRemote.class)
 @RolesAllowed("CARRIER")
 public class CarrierManagerBean implements CarrierManagerLocal, CarrierManagerRemote {
+
+    private static final Logger LOGGER = Logger.getLogger(CarrierManagerBean.class.getName());
+
+    @PostConstruct
+    public void init() {
+        LOGGER.info("CarrierManagerBean instance created and pooled.");
+    }
 
     @PersistenceContext(unitName = "GlobalTradePU")
     private EntityManager em;

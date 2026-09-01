@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+             https://jakarta.ee/xml/ns/jakartaee/ejb-jar_4_0.xsd"
+         version="4.0">
+
+    <display-name>GlobalTrade EJB Module</display-name>
+
+    <interceptors>
+        <interceptor>
+            <interceptor-class>com.globaltrade.ejb.interceptor.AuditLoggingInterceptor</interceptor-class>
+        </interceptor>
+        <interceptor>
+            <interceptor-class>com.globaltrade.ejb.interceptor.PerformanceMonitoringInterceptor</interceptor-class>
+        </interceptor>
+        <interceptor>
+            <interceptor-class>com.globaltrade.ejb.interceptor.CustomsComplianceInterceptor</interceptor-class>
+        </interceptor>
+        <interceptor>
+            <interceptor-class>com.globaltrade.ejb.interceptor.VendorDataValidationInterceptor</interceptor-class>
+        </interceptor>
+    </interceptors>
+
+    <assembly-descriptor>
+        <interceptor-binding>
+            <ejb-name>OrderManagerBean</ejb-name>
+            <interceptor-order>
+                <interceptor-class>com.globaltrade.ejb.interceptor.AuditLoggingInterceptor</interceptor-class>
+                <interceptor-class>com.globaltrade.ejb.interceptor.PerformanceMonitoringInterceptor</interceptor-class>
+            </interceptor-order>
+        </interceptor-binding>
+    </assembly-descriptor>
+</ejb-jar>

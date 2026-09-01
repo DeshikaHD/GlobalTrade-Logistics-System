@@ -23,6 +23,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import java.util.logging.Logger;
+
 @DeclareRoles({"CUSTOMER", "ADMIN"})
 @Stateless
 @Local(OrderManagerLocal.class)
@@ -30,6 +34,18 @@ import java.util.List;
 @Interceptors({AuditLoggingInterceptor.class, PerformanceMonitoringInterceptor.class})
 @RolesAllowed("CUSTOMER")
 public class OrderManagerBean implements OrderManagerLocal, OrderManagerRemote {
+
+    private static final Logger LOGGER = Logger.getLogger(OrderManagerBean.class.getName());
+
+    @PostConstruct
+    public void init() {
+        LOGGER.info("OrderManagerBean instance created and pooled.");
+    }
+
+    @PreDestroy
+    public void cleanup() {
+        LOGGER.info("OrderManagerBean instance removed from pool.");
+    }
 
     @PersistenceContext(unitName = "GlobalTradePU")
     private EntityManager em;

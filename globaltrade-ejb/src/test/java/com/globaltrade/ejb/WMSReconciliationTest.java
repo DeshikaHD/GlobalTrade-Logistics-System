@@ -39,6 +39,7 @@ public class WMSReconciliationTest {
                 .addClasses(com.globaltrade.core.entity.Customer.class, com.globaltrade.core.entity.Order.class, com.globaltrade.core.entity.OrderItem.class)
                 .addAsManifestResource(new File("../globaltrade-core/src/main/resources/META-INF/persistence.xml"),
                         "persistence.xml")
+                .addPackage("com.globaltrade.ejb.interceptor").addPackage("com.globaltrade.core.entity").addPackage("com.globaltrade.core.enums").addPackage("com.globaltrade.core.exception")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
@@ -122,3 +123,4 @@ public class WMSReconciliationTest {
         assertEquals(1, orders.size(), "One restock order should be placed after reconciliation");
     }
 }
+

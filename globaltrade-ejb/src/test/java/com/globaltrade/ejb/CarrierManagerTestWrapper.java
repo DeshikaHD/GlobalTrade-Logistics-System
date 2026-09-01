@@ -17,3 +17,4 @@ public class CarrierManagerTestWrapper {
         carrierManager.updateTransitStatus(trackingNumber, eventCode);
     }
 }
+
