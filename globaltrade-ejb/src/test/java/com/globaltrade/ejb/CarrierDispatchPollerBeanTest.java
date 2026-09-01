@@ -31,7 +31,7 @@ public class CarrierDispatchPollerBeanTest {
         return ShrinkWrap.create(JavaArchive.class)
                 .addClasses(CarrierDispatchPollerBean.class, CarrierDispatchPollerLocal.class, CarrierDispatchPollerRemote.class)
                 .addClasses(CarrierTrackingSimulatorBean.class, CarrierTrackingSimulatorLocal.class, CarrierTrackingSimulatorRemote.class)
-                .addClasses(Customer.class, Inventory.class, Order.class, OrderItem.class)
+                .addClasses(Customer.class, Inventory.class, Order.class, OrderItem.class, com.globaltrade.core.entity.Vendor.class)
                 .addAsManifestResource(new File("../globaltrade-core/src/main/resources/META-INF/persistence.xml"), "persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }

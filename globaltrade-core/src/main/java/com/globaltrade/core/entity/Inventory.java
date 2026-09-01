@@ -34,12 +34,12 @@ public class Inventory implements Serializable {
     @NotNull
     @Min(0)
     @Column(name = "reorder_threshold", nullable = false, columnDefinition = "integer default 0")
-    private Integer reorderThreshold;
+    private Integer reorderThreshold = 0;
 
     @NotNull
     @Min(1)
     @Column(name = "reorder_quantity", nullable = false, columnDefinition = "integer default 1")
-    private Integer reorderQuantity;
+    private Integer reorderQuantity = 1;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vendor_id")

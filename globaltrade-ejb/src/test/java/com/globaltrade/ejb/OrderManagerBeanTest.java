@@ -27,7 +27,7 @@ public class OrderManagerBeanTest {
         return ShrinkWrap.create(JavaArchive.class)
                 .addClasses(OrderManagerBean.class, OrderManagerLocal.class, OrderManagerRemote.class)
                 // Add the entity classes from the core module
-                .addClasses(Customer.class, Inventory.class, Order.class, OrderItem.class)
+                .addClasses(Customer.class, Inventory.class, Order.class, OrderItem.class, com.globaltrade.core.entity.Vendor.class)
                 // Add the interceptor if it exists in the EJB module, since OrderManagerBean uses AuditLoggingInterceptor
                 // We'll add the package to be safe.
                 .addPackage("com.globaltrade.ejb.interceptor")

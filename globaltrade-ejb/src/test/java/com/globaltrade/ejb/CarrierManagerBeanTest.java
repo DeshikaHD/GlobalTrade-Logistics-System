@@ -35,7 +35,7 @@ public class CarrierManagerBeanTest {
                 .addClasses(ExceptionRecoveryServiceBean.class, ExceptionRecoveryServiceLocal.class,
                         ExceptionRecoveryServiceRemote.class)
                 .addClasses(Customer.class, Inventory.class, Order.class, OrderItem.class,
-                        CarrierTransitException.class)
+                        CarrierTransitException.class, com.globaltrade.core.entity.Vendor.class)
                 .addAsManifestResource(new File("../globaltrade-core/src/main/resources/META-INF/persistence.xml"),
                         "persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");

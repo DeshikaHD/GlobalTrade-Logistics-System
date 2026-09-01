@@ -35,7 +35,7 @@ public class WarehouseManagerBeanTest {
                 .addClasses(WarehouseManagerBean.class, WarehouseManagerLocal.class, WarehouseManagerRemote.class,
                         WarehouseManagerTestWrapper.class)
                 .addClasses(Customer.class, Inventory.class, Order.class, OrderItem.class,
-                        InsufficientStockException.class)
+                        InsufficientStockException.class, com.globaltrade.core.entity.Vendor.class)
                 .addAsManifestResource(new File("../globaltrade-core/src/main/resources/META-INF/persistence.xml"),
                         "persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");

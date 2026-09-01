@@ -1,4 +1,6 @@
 com\globaltrade\ejb\CarrierManagerRemote.class
+com\globaltrade\ejb\WMSSimulatorLocal.class
+com\globaltrade\ejb\WMSSimulatorRemote.class
 com\globaltrade\ejb\WarehouseManagerRemote.class
 com\globaltrade\ejb\CarrierTrackingSimulatorLocal.class
 com\globaltrade\ejb\CarrierTrackingSimulatorBean.class
@@ -23,6 +25,7 @@ com\globaltrade\ejb\CarrierDispatchPollerLocal.class
 com\globaltrade\ejb\InventoryManagerBean.class
 com\globaltrade\ejb\WarehouseManagerBean.class
 com\globaltrade\ejb\SupplierOrderManagerRemote.class
+com\globaltrade\ejb\WarehouseManagementSystemSimulatorBean.class
 com\globaltrade\ejb\CarrierDispatchPollerRemote.class
 com\globaltrade\ejb\InventoryManagerLocal.class
 com\globaltrade\ejb\interceptor\AuditLoggingInterceptor.class

@@ -65,12 +65,12 @@ public class InventoryTest {
 
 | Test Class | Test Method | Purpose | Status |
 | :--- | :--- | :--- | :--- |
-| `InventoryTest` | `testValidInventory` | Verifies that a properly populated entity passes validation | PENDING |
-| `InventoryTest` | `testNegativeQuantityValidation` | Verifies that negative quantity triggers a `@Min` constraint violation | PENDING |
-| `InventoryTest` | `testBlankProductNameValidation` | Verifies that a missing product name triggers a `@NotBlank` violation | PENDING |
-| `CustomerTest` | `testValidCustomer` | Verifies that a correctly populated Customer passes validation | PENDING |
-| `CustomerTest` | `testCustomerNameTooShort` | Verifies that a name with length < 2 triggers a violation | PENDING |
-| `CustomerTest` | `testCustomerNameBlank` | Verifies that a blank name triggers a `@NotBlank` violation | PENDING |
+| `InventoryTest` | `testValidInventory` | Verifies that a properly populated entity passes validation | PASSED |
+| `InventoryTest` | `testNegativeQuantityValidation` | Verifies that negative quantity triggers a `@Min` constraint violation | PASSED |
+| `InventoryTest` | `testBlankProductNameValidation` | Verifies that a missing product name triggers a `@NotBlank` violation | PASSED |
+| `CustomerTest` | `testValidCustomer` | Verifies that a correctly populated Customer passes validation | PASSED |
+| `CustomerTest` | `testCustomerNameTooShort` | Verifies that a name with length < 2 triggers a violation | PASSED |
+| `CustomerTest` | `testCustomerNameBlank` | Verifies that a blank name triggers a `@NotBlank` violation | PASSED |
 
 ---
 
@@ -148,7 +148,7 @@ public class OrderManagerBeanTest {
 | `WarehouseManagerBeanTest` | `testPackOrder_Success` | Validates physical stock deduction and status update | PASSED |
 | `WarehouseManagerBeanTest` | `testPackOrder_InsufficientStock` | Validates `InsufficientStockException` is thrown when stock is low | PASSED |
 | `WarehouseManagerBeanTest` | `testSecurity_DirectAccessBlocked` | Validates `@RolesAllowed` blocks anonymous callers | PASSED |
-| `CarrierDispatchPollerBeanTest` | `testPollDeliveryStatus_Lifecycle` | Validates timer logic shifting orders from PACKED to SHIPPED to DELIVERED | PENDING |
+| `CarrierDispatchPollerBeanTest` | `testPollDeliveryStatus_Lifecycle` | Validates timer logic shifting orders from PACKED to SHIPPED to DELIVERED | PASSED |
 | `CarrierManagerBeanTest` | `testUpdateTransitStatus_Delivered` | Validates that DELIVERED event sets status to DELIVERED | PASSED |
 | `CarrierManagerBeanTest` | `testUpdateTransitStatus_Breakdown_RollbackAndRecover` | Validates rollback and REQUIRES_NEW recovery logic for BREAKDOWN | PASSED |
 | `CarrierManagerBeanTest` | `testSecurity_DirectAccessBlocked` | Validates `@RolesAllowed("CARRIER")` blocks anonymous access | PASSED |

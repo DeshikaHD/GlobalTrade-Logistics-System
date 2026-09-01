@@ -35,6 +35,8 @@ public class InventoryReplenishmentPollerBeanTest {
                 .addClasses(SupplierOrderManagerBean.class, SupplierOrderManagerLocal.class, SupplierOrderManagerRemote.class)
                 .addClasses(SupplierOrder.class, Vendor.class, Inventory.class, VendorSystemOutageException.class, AuditLoggingInterceptor.class)
                 .addClasses(com.globaltrade.core.entity.Customer.class, com.globaltrade.core.entity.Order.class, com.globaltrade.core.entity.OrderItem.class)
+                .addClasses(WarehouseManagementSystemSimulatorBean.class, WMSSimulatorLocal.class, WMSSimulatorRemote.class)
+                .addClasses(InventoryManagerBean.class, InventoryManagerLocal.class, InventoryManagerRemote.class)
                 .addAsManifestResource(new File("../globaltrade-core/src/main/resources/META-INF/persistence.xml"),
                         "persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");

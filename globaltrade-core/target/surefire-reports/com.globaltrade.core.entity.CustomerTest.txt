@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.globaltrade.core.entity.CustomerTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.561 s -- in com.globaltrade.core.entity.CustomerTest
