@@ -5,7 +5,9 @@ import com.globaltrade.core.entity.Inventory;
 import com.globaltrade.core.entity.Order;
 import com.globaltrade.core.entity.OrderItem;
 import com.globaltrade.ejb.interceptor.AuditLoggingInterceptor;
+import com.globaltrade.ejb.interceptor.PerformanceMonitoringInterceptor;
 import jakarta.annotation.Resource;
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
@@ -21,10 +23,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@DeclareRoles({"CUSTOMER", "ADMIN"})
 @Stateless
 @Local(OrderManagerLocal.class)
 @Remote(OrderManagerRemote.class)
-@Interceptors(AuditLoggingInterceptor.class)
+@Interceptors({AuditLoggingInterceptor.class, PerformanceMonitoringInterceptor.class})
 @RolesAllowed("CUSTOMER")
 public class OrderManagerBean implements OrderManagerLocal, OrderManagerRemote {
 

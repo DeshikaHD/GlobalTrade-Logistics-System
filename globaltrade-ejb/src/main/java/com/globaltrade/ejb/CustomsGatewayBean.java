@@ -5,7 +5,11 @@ import com.globaltrade.core.entity.Shipment;
 import com.globaltrade.core.enums.ShipmentStatus;
 import com.globaltrade.core.exception.CustomsClearanceRejectedException;
 import com.globaltrade.ejb.interceptor.CustomsComplianceInterceptor;
+import com.globaltrade.ejb.interceptor.PerformanceMonitoringInterceptor;
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
+import jakarta.ejb.Local;
+import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
@@ -16,9 +20,12 @@ import jakarta.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
 
+@DeclareRoles({"CUSTOMS_OFFICIAL", "ADMIN"})
 @Stateless
+@Local(CustomsGatewayLocal.class)
+@Remote(CustomsGatewayRemote.class)
 @RolesAllowed("CUSTOMS_OFFICIAL")
-@Interceptors(CustomsComplianceInterceptor.class)
+@Interceptors({CustomsComplianceInterceptor.class, PerformanceMonitoringInterceptor.class})
 public class CustomsGatewayBean implements CustomsGatewayLocal, CustomsGatewayRemote {
 
     @PersistenceContext(unitName = "GlobalTradePU")

@@ -2,6 +2,7 @@ package com.globaltrade.ejb;
 
 import com.globaltrade.core.entity.Order;
 import com.globaltrade.core.exception.CarrierTransitException;
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Local;
@@ -18,6 +19,7 @@ import com.globaltrade.core.enums.ShipmentStatus;
 import com.globaltrade.core.entity.SupplierOrder;
 import com.globaltrade.core.entity.Inventory;
 
+@DeclareRoles({"CARRIER", "ADMIN"})
 @Stateless
 @Local(CarrierManagerLocal.class)
 @Remote(CarrierManagerRemote.class)

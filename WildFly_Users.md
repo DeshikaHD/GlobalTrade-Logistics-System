@@ -32,3 +32,10 @@ This actor represents the supplier fulfilling restock orders. It interacts with 
 * **Password:** `Vendor123!`
 * **Group / Role:** `VENDOR`
 * **Add Command (Windows):** `add-user.bat -a -u "vendor1" -p "Vendor123!" -g "VENDOR"`
+
+## 5. Customs Portal (`CustomsActor.java`)
+This actor represents the customs official who approves or rejects shipments. It interacts with `CustomsGatewayBean`.
+* **Username:** `customs1`
+* **Password:** `Customs123!`
+* **Group / Role:** `CUSTOMS_OFFICIAL`
+* **Add Command (Windows):** `add-user.bat -a -u "customs1" -p "Customs123!" -g "CUSTOMS_OFFICIAL"`

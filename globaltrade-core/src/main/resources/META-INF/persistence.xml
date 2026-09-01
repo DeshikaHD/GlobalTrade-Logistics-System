@@ -13,6 +13,10 @@
         <class>com.globaltrade.core.entity.OrderItem</class>
         <class>com.globaltrade.core.entity.Vendor</class>
         <class>com.globaltrade.core.entity.SupplierOrder</class>
+        <class>com.globaltrade.core.entity.Shipment</class>
+        <class>com.globaltrade.core.entity.CustomsDeclaration</class>
+        <class>com.globaltrade.core.entity.CustomsAuditLog</class>
+        <class>com.globaltrade.core.entity.SupplierEvaluation</class>
 
         <properties>
             <property name="jakarta.persistence.schema-generation.database.action" value="update"/>

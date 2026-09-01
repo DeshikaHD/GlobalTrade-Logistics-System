@@ -6,7 +6,9 @@ import com.globaltrade.core.entity.SupplierOrder;
 import com.globaltrade.core.enums.ShipmentStatus;
 import com.globaltrade.core.exception.InvalidOrderStateException;
 import com.globaltrade.ejb.interceptor.AuditLoggingInterceptor;
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
+import jakarta.ejb.Local;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
@@ -18,9 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+@DeclareRoles({"VENDOR", "ADMIN"})
 @Stateless
+@Local(SupplierIntegrationFacadeLocal.class)
 @RolesAllowed("VENDOR")
-public class SupplierIntegrationFacadeBean implements SupplierIntegrationFacadeRemote {
+public class SupplierIntegrationFacadeBean implements SupplierIntegrationFacadeLocal, SupplierIntegrationFacadeRemote {
 
     private static final Logger LOGGER = Logger.getLogger(SupplierIntegrationFacadeBean.class.getName());
 
