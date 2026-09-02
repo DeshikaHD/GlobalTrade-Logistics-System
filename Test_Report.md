@@ -73,12 +73,28 @@ public class InventoryTest {
 | `CustomerTest`      | `testValidCustomer`              | Verifies that a correctly populated Customer passes validation         | PASSED |
 | `CustomerTest`      | `testCustomerNameTooShort`       | Verifies that a name with length < 2 triggers a violation              | PASSED |
 | `CustomerTest`      | `testCustomerNameBlank`          | Verifies that a blank name triggers a `@NotBlank` violation            | PASSED |
-| `Suppest`           | `testValidSupplierOrder`         | Verifies that a correctly populated SupplierOrder passes validation    | PASSED |
+| `SupplierOrderTest` | `testValidSupplierOrder`         | Verifies that a correctly populated SupplierOrder passes validation    | PASSED |
 | `SupplierOrderTest` | `testQuantityBelowMinimum`       | Verifies that quantity < 1 triggers a `@Min(1)` violation              | PASSED |
 | `SupplierOrderTest` | `testBlankSku`                   | Verifies that a blank SKU triggers a `@NotBlank` violation             | PASSED |
 | `OrderTest`         | `testValidOrder`                 | Verifies that a correctly populated Order passes validation            | PASSED |
 | `OrderTest`         | `testInvalidOrder_NullCustomer`  | Verifies that a null customer triggers a `@NotNull` violation          | PASSED |
 | `OrderTest`         | `testInvalidOrder_BlankStatus`   | Verifies that a blank status triggers a `@NotBlank` violation          | PASSED |
+| `VendorTest`        | `testValidVendor`                | Verifies that a correctly populated Vendor passes validation           | PASSED |
+| `VendorTest`        | `testVendorBlankName`            | Verifies that a blank name triggers a violation                        | PASSED |
+| `ShipmentTest`      | `testValidShipment`              | Verifies that a correctly populated Shipment passes validation         | PASSED |
+| `ShipmentTest`      | `testShipmentBlankTrackingNumber`| Verifies that a blank tracking number triggers a violation             | PASSED |
+| `CustomsDeclarationTest` | `testValidCustomsDeclaration` | Verifies that a correctly populated CustomsDeclaration passes validation | PASSED |
+| `CustomsDeclarationTest` | `testCustomsDeclarationBlankHsCode` | Verifies that a blank HS Code triggers a violation               | PASSED |
+| `CustomsAuditLogTest` | `testValidCustomsAuditLog`     | Verifies that a correctly populated CustomsAuditLog passes validation  | PASSED |
+| `CustomsAuditLogTest` | `testCustomsAuditLogBlankAction` | Verifies that a blank action triggers a violation                  | PASSED |
+| `SupplierEvaluationTest` | `testValidSupplierEvaluation` | Verifies that a correctly populated SupplierEvaluation passes validation | PASSED |
+| `SupplierEvaluationTest` | `testSupplierEvaluationNullVendor` | Verifies that a null vendor triggers a violation                  | PASSED |
+| `SupplierEvaluationTest` | `testSupplierEvaluationNullScore` | Verifies that a null score triggers a violation                    | PASSED |
+| `VendorTest`             | `testVendorBlankContactInfo`    | Verifies that a blank contact info triggers a violation            | PASSED |
+| `ShipmentTest`           | `testShipmentNullStatus`        | Verifies that a null shipment status triggers a violation          | PASSED |
+| `CustomsDeclarationTest` | `testCustomsDeclarationNullTaxPaid` | Verifies that a null tax paid triggers a violation                 | PASSED |
+| `CustomsDeclarationTest` | `testCustomsDeclarationBlankBrokerName` | Verifies that a blank broker name triggers a violation         | PASSED |
+| `CustomsAuditLogTest`    | `testCustomsAuditLogNullDate`   | Verifies that a null date triggers a violation                     | PASSED |
 
 ---
 
@@ -165,17 +181,29 @@ public class OrderManagerBeanTest {
 | `SupplierOrderManagerBeanTest`         | `testPlaceRestockOrder_VendorOutage`                   | Validates that `VendorSystemOutageException` is thrown during a simulated outage                                                   | PASSED |
 | `InventoryReplenishmentPollerBeanTest` | `testPollerExecutesReplenishmentAndResistsOutage`      | Validates timer creates SupplierOrders for low stock and resists vendor outages without crashing                                   | PASSED |
 | `WMSReconciliationTest`                | `testReconciliationTriggersRestock`                    | Validates that discrepancies between WMS and DB are reconciled before the timer places restock orders                              | PASSED |
-| `SupplierIntegrationFacadeBeanIT`      | `testDirectAccessFailsWithoutRole`                     | Validates that `@RolesAllowed("VENDOR")` blocks unauthenticated direct access                                                      | PASSED |
-| `SupplierIntegrationFacadeBeanIT`      | `testFulfillOrderSuccess`                              | Validates order fulfillment logic and correct `Shipment` entity creation with `READY_FOR_EXPORT` status                            | PASSED |
-| `SupplierIntegrationFacadeBeanIT`      | `testFulfillOrderInvalidState`                         | Validates `InvalidOrderStateException` is thrown when attempting to fulfill a non-REQUESTED order                                  | PASSED |
-| `CustomsGatewayBeanIT`                 | `testSubmitDeclarationSuccess`                         | Validates successful customs declaration submission and state transition to `AT_BORDER_PENDING_CLEARANCE`                          | PASSED |
-| `CustomsGatewayBeanIT`                 | `testSubmitDeclarationRejection_MissingTaxes`          | Validates `CustomsClearanceRejectedException` is thrown and transaction rolls back on missing taxes                                | PASSED |
-| `CustomsGatewayBeanIT`                 | `testApproveShipment`                                  | Validates that approving a shipment transitions its status to `CLEARED`                                                            | PASSED |
-| `CustomsGatewayBeanIT`                 | `testRejectShipment`                                   | Validates that rejecting a shipment transitions its status to `CUSTOMS_PAPERWORK_REJECTED`                                         | PASSED |
-| `CustomsGatewayBeanIT`                 | `testGetPendingClearanceShipments`                     | Validates retrieval of shipments currently awaiting customs clearance                                                              | PASSED |
+| `SupplierIntegrationFacadeBeanTest`      | `testDirectAccessFailsWithoutRole`                     | Validates that `@RolesAllowed("VENDOR")` blocks unauthenticated direct access                                                      | PASSED |
+| `SupplierIntegrationFacadeBeanTest`      | `testFulfillOrderSuccess`                              | Validates order fulfillment logic and correct `Shipment` entity creation with `READY_FOR_EXPORT` status                            | PASSED |
+| `SupplierIntegrationFacadeBeanTest`      | `testFulfillOrderInvalidState`                         | Validates `InvalidOrderStateException` is thrown when attempting to fulfill a non-REQUESTED order                                  | PASSED |
+| `CustomsGatewayBeanTest`                 | `testSubmitDeclarationSuccess`                         | Validates successful customs declaration submission and state transition to `AT_BORDER_PENDING_CLEARANCE`                          | PASSED |
+| `CustomsGatewayBeanTest`                 | `testSubmitDeclarationRejection_MissingTaxes`          | Validates `CustomsClearanceRejectedException` is thrown and transaction rolls back on missing taxes                                | PASSED |
+| `CustomsGatewayBeanTest`                 | `testApproveShipment`                                  | Validates that approving a shipment transitions its status to `CLEARED`                                                            | PASSED |
+| `CustomsGatewayBeanTest`                 | `testRejectShipment`                                   | Validates that rejecting a shipment transitions its status to `CUSTOMS_PAPERWORK_REJECTED`                                         | PASSED |
+| `CustomsGatewayBeanTest`                 | `testGetPendingClearanceShipments`                     | Validates retrieval of shipments currently awaiting customs clearance                                                              | PASSED |
+| `BatchReportServiceBeanTest`           | `testBatchReportServiceIsDeployed`                     | Validates Arquillian deployment and EJB injection for the BMT bean                                                                 | PASSED |
+| `BatchReportServiceBeanTest`           | `testGenerateDailyReport`                              | Validates that the Bean-Managed Transaction generates a report and commits successfully                                            | PASSED |
+| `DashboardManagerBeanTest`             | `testDashboardManagerIsDeployed`                       | Validates Arquillian deployment and EJB injection for the DashboardManager                                                         | PASSED |
+| `DashboardManagerBeanTest`             | `testSecurity_DirectAccessBlocked`                     | Validates `@RolesAllowed` blocks anonymous callers from accessing dashboard data                                                   | PASSED |
 
 **Critical Analysis:**  
-By utilizing **Arquillian** for Integration Testing, we validate the EJB lifecycle and security context within an actual Application Server (WildFly) instead of relying on mocked behavior.  
-The security test proves that the container's declarative authorization effectively identifies and rejects unauthorized caller principals, satisfying the strict supply chain security requirements defined in the architecture.
+By utilizing **Arquillian** for Integration Testing, we validate the EJB lifecycle and security context within an actual Application Server (WildFly) instead of relying on mocked behavior. This approach provides a significantly higher degree of confidence that the system will behave correctly in production, as container-provided services (Transactions, Security, Timers, Dependency Injection) are actively engaged during the test execution.
 
-*Note on Database Integrity:* All Arquillian tests (`WarehouseManagerBeanTest`, `CarrierManagerBeanTest`) have been updated with `@AfterEach` cleanup methods to explicitly remove any dummy entities (`Customer`, `Order`, `Inventory`) persisted during test initialization, ensuring the live PostgreSQL database is not polluted across test runs.
+The security tests actively prove that the container's declarative authorization effectively identifies and rejects unauthorized caller principals, satisfying the strict supply chain security requirements defined in the architecture. Furthermore, the transaction rollback tests (e.g., `testSubmitDeclarationRejection_MissingTaxes`) demonstrate the effectiveness of Container-Managed Transactions (CMT) in maintaining data integrity during runtime exceptions.
+
+*Note on Database Integrity:* All Arquillian tests (`WarehouseManagerBeanTest`, `CarrierManagerBeanTest`, etc.) have been updated with `@AfterEach` cleanup methods to explicitly remove any dummy entities (`Customer`, `Order`, `Inventory`) persisted during test initialization. This ensures the live PostgreSQL database is not polluted across test runs, maintaining a clean state for continuous integration.
+
+## 4. References
+
+*   Asleson, R. and Schutta, N. T. (2005). *Foundations of Ajax*. Berkeley: Apress. (Used for general web architecture principles).
+*   Fowler, M. (2006). *Continuous Integration*. [online] Available at: https://martinfowler.com/articles/continuousIntegration.html [Accessed 1 Sep. 2026].
+*   Massol, V. and Husted, T. (2003). *JUnit in Action*. Greenwich: Manning Publications.
+*   Rubinger, A. L. and Aslak, K. (2013). *Continuous Enterprise Development in Java*. Sebastopol: O'Reilly Media. (Primary reference for Arquillian and ShrinkWrap methodologies).

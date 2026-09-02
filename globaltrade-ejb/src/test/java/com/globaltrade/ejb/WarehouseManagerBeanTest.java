@@ -36,7 +36,7 @@ public class WarehouseManagerBeanTest {
                         WarehouseManagerTestWrapper.class)
                 .addClasses(Customer.class, Inventory.class, Order.class, OrderItem.class,
                         InsufficientStockException.class, com.globaltrade.core.entity.Vendor.class)
-                .addAsManifestResource(new File("../globaltrade-core/src/main/resources/META-INF/persistence.xml"),
+                .addAsManifestResource(new File("src/test/resources/META-INF/persistence-test.xml"),
                         "persistence.xml")
                 .addPackage("com.globaltrade.ejb.interceptor").addPackage("com.globaltrade.core.entity").addPackage("com.globaltrade.core.enums").addPackage("com.globaltrade.core.exception")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");

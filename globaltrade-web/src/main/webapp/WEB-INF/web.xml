@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
+    <display-name>GlobalTrade Logistics Web Portal</display-name>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Dashboard</web-resource-name>
+            <url-pattern>/dashboard</url-pattern>
+            <url-pattern>/dashboard.jsp</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>LOGISTICS_COORDINATOR</role-name>
+            <role-name>WAREHOUSE_STAFF</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>ApplicationRealm</realm-name>
+    </login-config>
+
+    <security-role>
+        <role-name>LOGISTICS_COORDINATOR</role-name>
+    </security-role>
+    <security-role>
+        <role-name>WAREHOUSE_STAFF</role-name>
+    </security-role>
+    
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+</web-app>

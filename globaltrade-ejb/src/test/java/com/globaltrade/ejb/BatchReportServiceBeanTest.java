@@ -31,7 +31,7 @@ public class BatchReportServiceBeanTest {
                     BatchReportServiceRemote.class
                 )
                 .addClasses(CustomsAuditLog.class)
-                .addPackage("com.globaltrade.ejb.interceptor").addPackage("com.globaltrade.core.entity").addPackage("com.globaltrade.core.enums").addPackage("com.globaltrade.core.exception").addAsManifestResource(new File("../globaltrade-core/src/main/resources/META-INF/persistence.xml"), "persistence.xml")
+                .addPackage("com.globaltrade.ejb.interceptor").addPackage("com.globaltrade.core.entity").addPackage("com.globaltrade.core.enums").addPackage("com.globaltrade.core.exception").addAsManifestResource(new File("src/test/resources/META-INF/persistence-test.xml"), "persistence.xml")
                 .addPackage("com.globaltrade.ejb.interceptor").addPackage("com.globaltrade.core.entity").addPackage("com.globaltrade.core.enums").addPackage("com.globaltrade.core.exception")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }

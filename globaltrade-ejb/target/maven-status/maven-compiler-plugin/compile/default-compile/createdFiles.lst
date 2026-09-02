@@ -16,6 +16,7 @@ com\globaltrade\ejb\CarrierTrackingSimulatorRemote.class
 com\globaltrade\ejb\SupplierOrderManagerLocal.class
 com\globaltrade\ejb\OrderManagerLocal.class
 com\globaltrade\ejb\CarrierDispatchPollerBean.class
+com\globaltrade\ejb\DashboardManagerRemote.class
 com\globaltrade\ejb\OrderManagerRemote.class
 com\globaltrade\ejb\CustomsGatewayBean.class
 com\globaltrade\ejb\CarrierDispatchPollerLocal.class
@@ -25,6 +26,7 @@ com\globaltrade\ejb\SupplierIntegrationFacadeLocal.class
 com\globaltrade\ejb\SupplierIntegrationFacadeRemote.class
 com\globaltrade\ejb\CarrierManagerRemote.class
 com\globaltrade\ejb\WMSSimulatorLocal.class
+com\globaltrade\ejb\DashboardManagerLocal.class
 com\globaltrade\ejb\WMSSimulatorRemote.class
 com\globaltrade\ejb\RouteOptimizationTimerLocal.class
 com\globaltrade\ejb\WarehouseManagerRemote.class
@@ -45,6 +47,7 @@ com\globaltrade\ejb\OrderManagerBean.class
 com\globaltrade\ejb\InventoryManagerBean.class
 com\globaltrade\ejb\CustomsMonitorTimerBean.class
 com\globaltrade\ejb\SupplierOrderManagerRemote.class
+com\globaltrade\ejb\DashboardManagerBean.class
 com\globaltrade\ejb\WarehouseManagementSystemSimulatorBean.class
 com\globaltrade\ejb\CarrierDispatchPollerRemote.class
 com\globaltrade\ejb\InventoryManagerLocal.class

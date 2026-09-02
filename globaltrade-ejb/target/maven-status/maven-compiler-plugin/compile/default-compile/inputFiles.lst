@@ -15,6 +15,9 @@ C:\Document\JAVA INSTITUTE\BCD I\Projects\GlobalTrade Logistics System\globaltra
 C:\Document\JAVA INSTITUTE\BCD I\Projects\GlobalTrade Logistics System\globaltrade-ejb\src\main\java\com\globaltrade\ejb\CustomsGatewayLocal.java
 C:\Document\JAVA INSTITUTE\BCD I\Projects\GlobalTrade Logistics System\globaltrade-ejb\src\main\java\com\globaltrade\ejb\CustomsGatewayRemote.java
 C:\Document\JAVA INSTITUTE\BCD I\Projects\GlobalTrade Logistics System\globaltrade-ejb\src\main\java\com\globaltrade\ejb\CustomsMonitorTimerBean.java
+C:\Document\JAVA INSTITUTE\BCD I\Projects\GlobalTrade Logistics System\globaltrade-ejb\src\main\java\com\globaltrade\ejb\DashboardManagerBean.java
+C:\Document\JAVA INSTITUTE\BCD I\Projects\GlobalTrade Logistics System\globaltrade-ejb\src\main\java\com\globaltrade\ejb\DashboardManagerLocal.java
+C:\Document\JAVA INSTITUTE\BCD I\Projects\GlobalTrade Logistics System\globaltrade-ejb\src\main\java\com\globaltrade\ejb\DashboardManagerRemote.java
 C:\Document\JAVA INSTITUTE\BCD I\Projects\GlobalTrade Logistics System\globaltrade-ejb\src\main\java\com\globaltrade\ejb\ExceptionRecoveryServiceBean.java
 C:\Document\JAVA INSTITUTE\BCD I\Projects\GlobalTrade Logistics System\globaltrade-ejb\src\main\java\com\globaltrade\ejb\ExceptionRecoveryServiceLocal.java
 C:\Document\JAVA INSTITUTE\BCD I\Projects\GlobalTrade Logistics System\globaltrade-ejb\src\main\java\com\globaltrade\ejb\ExceptionRecoveryServiceRemote.java

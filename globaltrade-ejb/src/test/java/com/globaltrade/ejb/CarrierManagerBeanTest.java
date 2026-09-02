@@ -38,7 +38,7 @@ public class CarrierManagerBeanTest {
                         CarrierTransitException.class, com.globaltrade.core.entity.Vendor.class,
                         com.globaltrade.core.entity.Shipment.class, com.globaltrade.core.enums.ShipmentStatus.class,
                         com.globaltrade.core.entity.SupplierOrder.class)
-                .addAsManifestResource(new File("../globaltrade-core/src/main/resources/META-INF/persistence.xml"),
+                .addAsManifestResource(new File("src/test/resources/META-INF/persistence-test.xml"),
                         "persistence.xml")
                 .addPackage("com.globaltrade.ejb.interceptor").addPackage("com.globaltrade.core.entity").addPackage("com.globaltrade.core.enums").addPackage("com.globaltrade.core.exception")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");

@@ -1,14 +1,15 @@
-com\globaltrade\ejb\CustomsGatewayBeanIT.class
+com\globaltrade\ejb\CustomsGatewayBeanTest.class
 com\globaltrade\ejb\SupplierOrderManagerBeanTest.class
 com\globaltrade\ejb\CustomsGatewayTestWrapper.class
 com\globaltrade\ejb\OrderManagerBeanTest.class
 com\globaltrade\ejb\SupplierIntegrationFacadeTestWrapper.class
 com\globaltrade\ejb\CarrierManagerBeanTest.class
+com\globaltrade\ejb\SupplierIntegrationFacadeBeanTest.class
 com\globaltrade\ejb\WarehouseManagerTestWrapper.class
-com\globaltrade\ejb\SupplierIntegrationFacadeBeanIT.class
 com\globaltrade\ejb\CarrierDispatchPollerBeanTest.class
 com\globaltrade\ejb\BatchReportServiceBeanTest.class
 com\globaltrade\ejb\CarrierManagerTestWrapper.class
 com\globaltrade\ejb\WarehouseManagerBeanTest.class
 com\globaltrade\ejb\WMSReconciliationTest.class
+com\globaltrade\ejb\DashboardManagerBeanTest.class
 com\globaltrade\ejb\InventoryReplenishmentPollerBeanTest.class
